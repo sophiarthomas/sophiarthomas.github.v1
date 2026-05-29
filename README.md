@@ -1,16 +1,5 @@
 # sophiarthomas.com
 
-## Status
-
-- [x] Add icons for project, about me, etc
-- [x] Initialize the blocks in certain locations on the screen
-- [ ] make the red button close the window
-- [x] closeWindow() function
-- [x] create a window for each folder
-- [ ] resize windows
-- [ ] tile system - stateful memeory
-- [ ] close all windows button
-
 ## Makefile
 
 - css
