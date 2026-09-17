@@ -21,10 +21,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-defaults:
-  run:
-    working-directory: my-app
-
 jobs:
   # Single deploy job since we're just deploying
   deploy:
