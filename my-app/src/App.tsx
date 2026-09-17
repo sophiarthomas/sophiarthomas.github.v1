@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
 import Terminal from './components/Terminal';
+import FolderImg from './assets/kali_folder.svg';
+import TerminalImg from './assets/terminal.svg'
 import './App.css';
 
 const APP_CONTENTS = {
@@ -9,7 +11,7 @@ const APP_CONTENTS = {
     <div className="static-window-content">
       <h2 className="title-blue">ℹ️ About Me</h2>
       <p><strong>Name:</strong> Sophia R. Thomas</p>
-      <p><strong>Role:</strong> IT Support Specialist & Aspiring Cybersecurity Analyst</p>
+      <p><strong>Role:</strong> IT Support Engineer & Aspiring Cybersecurity Analyst</p>
       <p className="mt-10">I build custom virtual systems to verify infrastructure exploits and study defense systems. Welcome to my web console interface!</p>
     </div>
   ),
@@ -108,10 +110,10 @@ export default function App() {
 
       {/* Desktop Space Grid Workspace */}
       <div className="desktop">
-        <DesktopIcon label="about_me" icon="📁" onLaunch={() => launchApp('about', 'root@kali: ~/about_me')} />
-        <DesktopIcon label="skills" icon="📁" onLaunch={() => launchApp('skills', 'root@kali: ~/skills')} />
-        <DesktopIcon label="projects" icon="📁" onLaunch={() => launchApp('projects', 'root@kali: ~/projects')} />
-        <DesktopIcon label="Kali Terminal" icon="🐚" onLaunch={() => launchApp('terminal', 'root@kali: ~', true)} />
+        <DesktopIcon label="about_me" icon={FolderImg} onLaunch={() => launchApp('about', 'root@kali: ~/about_me')} />
+        <DesktopIcon label="skills" icon={FolderImg} onLaunch={() => launchApp('skills', 'root@kali: ~/skills')} />
+        <DesktopIcon label="projects" icon={FolderImg} onLaunch={() => launchApp('projects', 'root@kali: ~/projects')} />
+        <DesktopIcon label="Kali Terminal" icon={TerminalImg} onLaunch={() => launchApp('terminal', 'root@kali: ~', true)} />
       </div>
 
       {/* Render Dynamic Windows Ecosystem */}
