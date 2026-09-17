@@ -1,0 +1,116 @@
+:root {
+  --bg-color: #0f141c;
+  --panel-color: #1a222f;
+  --terminal-bg: #0d1017;
+  --kali-blue: #1793d1;
+  --kali-green: #33ff33;
+  --text-color: #d0d7de;
+  --border-color: #2f3844;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+.os-environment {
+  background-color: var(--bg-color);
+  background-image: radial-gradient(rgba(23, 147, 209, 0.15) 1px, transparent 0);
+  background-size: 24px 24px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: var(--text-color);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+/* Status Panel */
+.top-bar {
+  height: 28px;
+  background-color: var(--panel-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 13px;
+  z-index: 99999;
+  position: relative;
+}
+.left-menu, .right-menu { display: flex; align-items: center; gap: 15px; }
+.kali-logo { font-size: 16px; cursor: pointer; }
+.menu-item:hover, .status-icon:hover { color: var(--kali-blue); cursor: pointer; }
+.menu-item.active { color: var(--kali-blue); font-weight: bold; }
+
+/* Desktop Matrix */
+.desktop {
+  position: absolute;
+  top: 28px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 25px;
+}
+.desktop-item { width: 80px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; }
+.desktop-item .icon { font-size: 40px; margin-bottom: 6px; transition: transform 0.1s ease; }
+.desktop-item:hover .icon { transform: scale(1.1); }
+.desktop-item .icon-label { font-size: 12px; background-color: rgba(0, 0, 0, 0.6); padding: 2px 6px; border-radius: 4px; }
+
+/* Window Components Architecture */
+.window {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.title-bar {
+  background-color: var(--panel-color);
+  border-bottom: 1px solid var(--border-color);
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  touch-action: none;
+}
+.window-title { font-size: 13px; }
+.window-controls { display: flex; gap: 8px; }
+.control-btn { width: 12px; height: 12px; border-radius: 50%; border: none; cursor: pointer; }
+.btn-close { background-color: #ff5f56; }
+.btn-minimize { background-color: #ffbd2e; }
+.btn-maximize { background-color: #27c93f; }
+
+.window-content {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 14px;
+  user-select: text;
+}
+
+/* Content Elements & Terminal Styling */
+.static-window-content { padding: 10px; line-height: 1.6; }
+.title-blue { color: var(--kali-blue); margin-bottom: 10px; }
+.text-green { color: var(--kali-green); }
+.mt-10 { margin-top: 10px; }
+.skills-list { list-style-type: square; padding-left: 20px; line-height: 1.8; }
+
+.terminal-body { color: var(--text-color); display: flex; flex-direction: column; height: 100%; min-height: 100%; cursor: text; }
+.output-line { margin-bottom: 6px; white-space: pre-wrap; line-height: 1.4; }
+.input-line { display: flex; align-items: center; }
+.prompt { color: var(--kali-green); font-weight: bold; margin-right: 8px; white-space: nowrap; }
+.terminal-input { background: transparent; border: none; outline: none; color: #fff; font-family: inherit; font-size: inherit; flex: 1; }
