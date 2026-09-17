@@ -3,7 +3,7 @@ import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
 import Terminal from './components/Terminal';
 import FolderImg from './assets/kali_folder.svg';
-import TerminalImg from './assets/terminal.svg'
+import TerminalImg from './assets/terminal.svg';
 import './App.css';
 
 const APP_CONTENTS = {
@@ -36,9 +36,21 @@ const APP_CONTENTS = {
   ),
 };
 
+type AppId = keyof typeof APP_CONTENTS;
+type WindowId = AppId | 'terminal';
+
+type OpenWindow = {
+  id: WindowId;
+  title: string;
+  isTerminal: boolean;
+  zIndex: number;
+  x: number;
+  y: number;
+};
+
 export default function App() {
   const [time, setTime] = useState('');
-  const [openWindows, setOpenWindows] = useState([]);
+  const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
   const [topZIndex, setTopZIndex] = useState(100);
 
   // Sync System Time
@@ -53,7 +65,7 @@ export default function App() {
   }, []);
 
   // Open an application window or bring it to focus if already open
-  const launchApp = (id, title, isTerminal = false) => {
+  const launchApp = (id: WindowId, title: string, isTerminal = false) => {
     const existing = openWindows.find(w => w.id === id);
     const nextZ = topZIndex + 1;
     setTopZIndex(nextZ);
@@ -74,11 +86,11 @@ export default function App() {
     }
   };
 
-  const closeApp = (id) => {
+  const closeApp = (id: WindowId) => {
     setOpenWindows(openWindows.filter(w => w.id !== id));
   };
 
-  const focusApp = (id) => {
+  const focusApp = (id: WindowId) => {
     const nextZ = topZIndex + 1;
     setTopZIndex(nextZ);
     setOpenWindows(openWindows.map(w => w.id === id ? { ...w, zIndex: nextZ } : w));
@@ -127,7 +139,7 @@ export default function App() {
           onClose={() => closeApp(win.id)}
           onFocus={() => focusApp(win.id)}
         >
-          {win.isTerminal ? <Terminal /> : APP_CONTENTS[win.id]}
+          {win.isTerminal ? <Terminal /> : APP_CONTENTS[win.id as AppId]}
         </Window>
       ))}
     </div>
