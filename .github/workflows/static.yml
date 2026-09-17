@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Build and Deploy
+name: Deploy React Vite App
 
 on:
   # Runs on pushes targeting the default branch
@@ -41,17 +41,26 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Pandoc
-        uses: pandoc/actions/setup@v1
-      - name: Build HTML from Markdown
-        run: make gen
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm" # Automatically caches node_modules for faster builds
+
+      - name: Install Dependencies
+        run: npm ci # Ensures a clean installation of exact dependencies
+
+      - name: Build Project
+        run: npm run build
+
       - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
+        uses: actions/configure-pages@v4
+
+      - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: "./dst"
+          path: "./dist" # Vite outputs production files into the 'dist' folder
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

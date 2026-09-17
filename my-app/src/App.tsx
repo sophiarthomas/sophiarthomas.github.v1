@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
 import Terminal from './components/Terminal';
